@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfmn4f15djihf"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_olw3f"]
+
+[node name="Button" type="Button"]
+anchors_preset = -1
+anchor_right = 0.01
+anchor_bottom = 0.017
+offset_right = -0.520001
+offset_bottom = -0.0160006
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(5.375, 5.375)
+scale = Vector2(9.25, 9.25)
+mesh = SubResource("QuadMesh_olw3f")

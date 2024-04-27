@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://os4bod5wntvl"]
+
+[ext_resource type="Script" path="res://Car.gd" id="1_8uoyy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xth1"]
+radius = 21.0
+height = 110.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ka06h"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 1284
+collision_mask = 1284
+script = ExtResource("1_8uoyy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1285
+collision_mask = 1285
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8xth1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-0.499999, 0)
+scale = Vector2(93, 20)
+mesh = SubResource("CapsuleMesh_ka06h")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8xth1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

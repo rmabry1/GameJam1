@@ -1,0 +1,142 @@
+[gd_scene load_steps=15 format=3 uid="uid://clbfcgx16dtu4"]
+
+[ext_resource type="PackedScene" uid="uid://bfmn4f15djihf" path="res://button.tscn" id="1_15kka"]
+[ext_resource type="Script" path="res://MAIN.gd" id="1_xohhm"]
+[ext_resource type="PackedScene" path="res://wall.tscn" id="2_i3iby"]
+[ext_resource type="Script" path="res://button.gd" id="3_b6t1j"]
+[ext_resource type="Script" path="res://button2.gd" id="4_2xmvq"]
+[ext_resource type="Script" path="res://button3.gd" id="5_2hlc5"]
+[ext_resource type="PackedScene" uid="uid://3n26465ho14b" path="res://camera_2d.tscn" id="7_2xbin"]
+[ext_resource type="Script" path="res://camera_2d.gd" id="8_1ed5f"]
+[ext_resource type="PackedScene" uid="uid://jnxoqugotkbb" path="res://boat.tscn" id="9_adl28"]
+[ext_resource type="Script" path="res://boat.gd" id="10_6y67d"]
+[ext_resource type="PackedScene" path="res://trashGrabber.tscn" id="11_8a5er"]
+[ext_resource type="Script" path="res://trashGrabber.gd" id="12_3l0dt"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0i3ii"]
+b = Vector2(-1.25, 231)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4ypyl"]
+a = Vector2(0.75, 1.75)
+b = Vector2(1, 208.5)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(94, 67)
+scale = Vector2(4, 4)
+script = ExtResource("1_xohhm")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(844.5, -1155.75)
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="Button" parent="." instance=ExtResource("1_15kka")]
+offset_left = -4.5
+offset_top = -5.5
+offset_right = 6.5
+offset_bottom = 5.5
+scale = Vector2(4, 4)
+script = ExtResource("3_b6t1j")
+
+[node name="Button2" parent="." instance=ExtResource("1_15kka")]
+offset_left = 101.5
+offset_top = 73.5
+offset_right = 112.5
+offset_bottom = 84.5
+scale = Vector2(4, 4)
+script = ExtResource("4_2xmvq")
+
+[node name="Button3" parent="." instance=ExtResource("1_15kka")]
+offset_left = 193.25
+offset_top = -2.75
+offset_right = 204.25
+offset_bottom = 8.25
+scale = Vector2(4, 4)
+script = ExtResource("5_2hlc5")
+
+[node name="Camera2D" parent="." instance=ExtResource("7_2xbin")]
+position = Vector2(-1000, -1000)
+script = ExtResource("8_1ed5f")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("9_adl28")]
+position = Vector2(1100, 65)
+collision_layer = 2317
+collision_mask = 2317
+script = ExtResource("10_6y67d")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("11_8a5er")]
+position = Vector2(1000, -1000)
+collision_layer = 2305
+collision_mask = 2305
+script = ExtResource("12_3l0dt")
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(1153, -1104.75)
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(1238.5, -910.25)
+rotation = 1.5708
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(1244.75, -1089.25)
+rotation = 1.5708
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(1153.75, -48)
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="Area2D2" type="Area2D" parent="StaticBody2D5"]
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5/Area2D2"]
+shape = SubResource("SegmentShape2D_0i3ii")
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(1299.5, 158.5)
+rotation = 1.5708
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(1301.25, -21.25)
+rotation = 1.5708
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("2_i3iby")]
+position = Vector2(847.75, -272.75)
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-778.5, -1100.25)
+collision_layer = 1281
+collision_mask = 1281
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.75, 1.25)
+shape = SubResource("SegmentShape2D_4ypyl")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="CharacterBody2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="CharacterBody2D2" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="area_entered" from="StaticBody2D5/Area2D2" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="StaticBody2D5/Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
